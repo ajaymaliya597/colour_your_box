@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour_div</title>
+    <link rel="shortcut icon" href="./div.png" type="image/x-icon">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Light background for contrast */
+        }
+        .container {
+            border: 2px solid black;
+            width: 90vw;
+            max-width: 1200px;
+            padding: 2vh 1vw;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8); /* Glass effect */
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+        }
+        .upper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2vh;
+        }
+        input {
+            margin: 0.5vh 0;
+            width: 80%;
+            max-width: 300px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            margin-top: 1vh;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: #007bff;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+        .box {
+            border: 2px solid black;
+            width: 22%;
+            padding-bottom: 22%; /* Maintain square aspect ratio */
+            margin: 1%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border-radius: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .box:hover {
+            transform: translateY(-10px); /* 3D lift effect */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Heavy shadow */
+        }
+        @media (max-width: 768px) {
+            .box {
+                width: 46%;
+                padding-bottom: 46%; /* Maintain square aspect ratio */
+                margin: 2%;
+            }
+        }
+        @media (max-width: 480px) {
+            .box {
+                width: 96%;
+                padding-bottom: 96%; /* Maintain square aspect ratio */
+                margin: 2%;
+            }
+            input {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="upper">
+            <input id="boxnum" type="number" placeholder="Select your div" min="1" max="8">
+            <input id="boxcol" type="text" placeholder="Enter your colors (comma separated)">
+            <button id="btn">Submit</button>
+        </div>
+        <div class="box-container">
+            <div class="box" id="box1"></div>
+            <div class="box" id="box2"></div>
+            <div class="box" id="box3"></div>
+            <div class="box" id="box4"></div>
+        </div>
+        <div class="box-container">
+            <div class="box" id="box5"></div>
+            <div class="box" id="box6"></div>
+            <div class="box" id="box7"></div>
+            <div class="box" id="box8"></div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('btn').addEventListener('click', () => {
+            const boxnum = parseInt(document.getElementById('boxnum').value);
+            const boxcol = document.getElementById('boxcol').value.split(',').map(c => c.trim());
+            if (boxnum >= 1 && boxnum <= 8) {
+                const box = document.getElementById(`box${boxnum}`);
+                if (boxcol.length > 1) {
+                    box.style.background = `linear-gradient(${boxcol.join(', ')})`;
+                } else {
+                    box.style.backgroundColor = boxcol[0];
+                }
+            } else {
+                alert('Please select a valid box number between 1 and 8.');
+            }
+        });
+    </script>
+</body>
+</html>
