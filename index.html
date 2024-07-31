@@ -125,7 +125,7 @@
             if (boxnum >= 1 && boxnum <= 8) {
                 const box = document.getElementById(`box${boxnum}`);
                 if (boxcol.length > 1) {
-                    box.style.background = `linear-gradient(${boxcol.join(', ')})`;
+                    box.style.background = `radial-gradient(${boxcol.join(', ')})`;
                 } else {
                     box.style.backgroundColor = boxcol[0];
                 }
